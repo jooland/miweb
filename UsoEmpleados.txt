@@ -1,0 +1,31 @@
+package es.atosfct.IoC;
+
+public class UsoEmpleados{
+
+    public static void main(String[] args){
+
+      /*  //creacion de objetos de tipo Empleado
+        JefeEmpleado Empleado1 = new JefeEmpleado();
+        //utilizando la interfaz para crear objetos
+        Empleados Empleado1 = new JefeEmpleado();
+        
+        //uso de los objetos creados
+        System.out.println(Empleado1.getTarea());
+        */
+    //cargar archivo Xml
+    ClassPathXmlApplicationContext contexto = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+    //pedir al archivo xml el bean del objeto
+    Empleados Juan = contexto.getBean("miEmpleado", Empleados.class);
+    System.out.println(Juan.getTareas());
+    //cerrar xml
+    contexto.close();
+    }
+
+}
+
+//se pretende trabajar con diferente tipos de 
+// objetos - una buena practica es crear una abstraccion de 
+// de los datos, es crear una entidad(clase) principal. llevarla 
+// a una clase abstracta de la cual hereden las demas clases o crear una interfaz 
+//y que implemente las demas clases

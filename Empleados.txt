@@ -1,0 +1,9 @@
+package es.atosfct.IoC;
+
+public interface Empleados{
+
+    public String getTareas(){
+       
+    }
+
+}
