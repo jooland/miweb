@@ -1,0 +1,58 @@
+La inyección de dependencias se puede aplicar en una clase que calcule el área de una figura 
+geométrica de varias maneras, dependiendo de la complejidad de la clase y de los requerimientos 
+específicos de la aplicación. Aquí te muestro un 
+ejemplo básico de cómo se puede utilizar la inyección de dependencias en 
+una clase que calcule el área de un triángulo:
+
+public interface Triangulo {
+   double getBase();
+   double getAltura();
+}
+
+public class TrianguloRectangulo implements Triangulo {
+   private double base;
+   private double altura;
+
+   public TrianguloRectangulo(double base, double altura) {
+      this.base = base;
+      this.altura = altura;
+   }
+
+   @Override
+   public double getBase() {
+      return base;
+   }
+
+   @Override
+   public double getAltura() {
+      return altura;
+   }
+}
+
+public class CalculadoraArea {
+   private Triangulo triangulo;
+
+   public CalculadoraArea(Triangulo triangulo) {
+      this.triangulo = triangulo;
+   }
+
+   public double calcularArea() {
+      return (triangulo.getBase() * triangulo.getAltura()) / 2;
+   }
+}
+
+En este ejemplo, la clase CalculadoraArea es la que calcula el área del triángulo, pero no tiene 
+información sobre el triángulo en sí mismo. En cambio, la información se pasa a la clase a través
+ del constructor, que toma un objeto de tipo Triangulo como argumento. La interfaz Triangulo define
+  los métodos que se necesitan para obtener la base y la altura del triángulo.
+
+La clase TrianguloRectangulo es una implementación de la interfaz Triangulo, que define los valores
+ de base y altura que se utilizarán para calcular el área del triángulo. Esta clase se puede cambiar
+  fácilmente para definir diferentes tipos de triángulos, o incluso para obtener la información de 
+  un servicio externo o de una base de datos.
+
+El uso de la inyección de dependencias en este ejemplo hace que la clase CalculadoraArea
+ sea más flexible y reutilizable, ya que no depende de una implementación específica del
+  triángulo. En cambio, puede recibir cualquier objeto que implemente la interfaz Triangulo.
+   Esto permite que la clase sea fácilmente modificable y extensible, y permite una mejor 
+   separación de las responsabilidades entre las diferentes partes de la aplicación.
